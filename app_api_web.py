@@ -14,7 +14,29 @@ import base64
 
 # === Конфигурация ===
 root_data_dir = '/mnt/d/Python/Project/Nikitenko_multi_class/DataSet_V3/'
-class_names = sorted(os.listdir(root_data_dir))
+class_names =  [
+    'Вскрышной грунт', 
+    'Глина кирпичная', 
+    'Грунт гранитный скальный ГЛЫБОВЫЙ фр.0-500',
+    'Грунт гранитный скальный глыбовый',
+    'Грунт гранитный скальный гравийный фр.0-300',
+    'Дизельное топливо',
+    'Калиброванный-ДРОБЛЕННЫЙ скальный грунт фр.0-200',
+    'Отсев(фракция 0-3)',
+    'Отсев(фракция 0-5)',
+    'ПустойКузов',
+    'Супесь',
+    'ЩПС фракция 0-10',
+    'ЩПС фракция 0-120',
+    'ЩПС фракция 0-20',
+    'ЩПС фракция 0-40',
+    'ЩПС фракция 0-80',
+    'Щебень фракция 03-10',
+    'Щебень фракция 20-40',
+    'Щебень фракция 40-70',
+    'Щебень фракция 5-20',
+    'Щебень фракция 70-120'
+]
 num_of_classes = len(class_names)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -100,7 +122,7 @@ class MyNetWithCBAM(nn.Module):
 
 # === Инициализация модели ===
 model = MyNetWithCBAM(num_of_classes=num_of_classes).to(device)
-checkpoint = torch.load("/mnt/d/Python/Project/Nikitenko_multi_class/models/v4/checkpoint.pth", map_location=device, weights_only=True)
+checkpoint = torch.load("model_path = "./models/v5/checkpoint.pth", map_location=device, weights_only=True)
 model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
 
