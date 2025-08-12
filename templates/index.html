@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Предсказание модели</title>
+</head>
+<body>
+    <h1>Загрузите изображение для предсказания</h1>
+
+    <!-- Форма для загрузки файла -->
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Загрузить и предсказать</button>
+    </form>
+
+    {% if predicted_class %}
+        <h2>Результат:</h2>
+        <p>Класс: {{ predicted_class }}</p>
+        
+        <h3>Изображение:</h3>
+        <img src="data:image/jpeg;base64,{{ image }}" alt="Uploaded Image" width="300">
+    {% endif %}
+</body>
+</html>
