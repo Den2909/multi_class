@@ -5,8 +5,11 @@ FROM python:3.9-slim
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     libglib2.0-0 \
-    git \
     curl \
+    build-essential \
+    python3-dev \
+    libpng-dev \
+    libjpeg-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Создаем не-root пользователя и директорию /app
@@ -18,18 +21,19 @@ RUN useradd -m appuser && \
 USER appuser
 WORKDIR /app
 
-# Клонируем репозиторий
-RUN git clone https://github.com/Den2909/multi_class . && \
-    rm -rf .git
+# Копируем локальные файлы
+COPY . /app
 
 # Создаем и активируем виртуальное окружение
 RUN python -m venv /app/venv
 ENV PATH="/app/venv/bin:$PATH"
 
-# Обновляем pip в виртуальном окружении
-RUN pip install --upgrade pip
+# Обновляем pip и устанавливаем базовые зависимости
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir uvicorn fastapi efficientnet-pytorch pillow jinja2 torchvision python-multipart
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
 
-# Устанавливаем зависимости Python
+# Устанавливаем зависимости Python из requirements_app.txt (если есть)
 RUN if [ -f requirements_app.txt ]; then pip install --no-cache-dir -r requirements_app.txt; else echo "No requirements file found"; fi
 
 # Открываем порт для FastAPI
