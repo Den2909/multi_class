@@ -13,7 +13,7 @@ from io import BytesIO
 import base64
 
 # === Конфигурация ===
-root_data_dir = '/mnt/d/Python/Project/Nikitenko_multi_class/DataSet_V3/'
+
 class_names =  [
     'Вскрышной грунт', 
     'Глина кирпичная', 
@@ -122,7 +122,7 @@ class MyNetWithCBAM(nn.Module):
 
 # === Инициализация модели ===
 model = MyNetWithCBAM(num_of_classes=num_of_classes).to(device)
-checkpoint = torch.load("model_path = "./models/v5/checkpoint.pth", map_location=device, weights_only=True)
+checkpoint = torch.load("./models/v5/checkpoint.pth", map_location=device, weights_only=True)
 model.load_state_dict(checkpoint['model_state_dict'])
 model.eval()
 
