@@ -5,3 +5,4 @@ efficientnet_pytorch
 Pillow
 matplotlib
 uvicorn
+fastapi
