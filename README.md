@@ -3,7 +3,7 @@
 1. **Клонируйте репозиторий**:
    ```bash
    git clone https://github.com/Den2909/multi_class
-   cd Project_tg_bot
+   cd multi_class
    ```
 
 2. **Соберите Docker-образ**:
