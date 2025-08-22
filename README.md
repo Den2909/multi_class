@@ -65,3 +65,12 @@ sudo docker --version
 sudo docker run hello-world
    ```
 После установки docker лучше перезапустить сессию: exit
+
+Удаление неиспользуемых контейнеров, образы и тома:
+ ```bash
+docker rm -f multi_class_container
+docker image prune -a -f
+docker volume prune -f
+docker system prune -a --volumes -f
+   ```
+
