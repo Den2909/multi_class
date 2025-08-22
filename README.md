@@ -2,6 +2,8 @@
 
 1. **Клонируйте репозиторий**:
    ```bash
+   sudo apt update
+   sudo apt install git -y
    git clone https://github.com/Den2909/multi_class
    cd multi_class
    ```
