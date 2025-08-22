@@ -1,6 +1,4 @@
 flask
-#torch
-#torchvision
 efficientnet_pytorch
 Pillow
 matplotlib
