@@ -74,3 +74,11 @@ docker volume prune -f
 docker system prune -a --volumes -f
    ```
 
+Клонирование с гугл диска:
+ ```bash
+# Установка
+pip install gdown
+
+# Скачивание по ID файла
+gdown --id <ID_файла>
+   ```
